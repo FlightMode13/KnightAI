@@ -35,3 +35,13 @@ Our initial focus is on:
 - Generate AI prompts, templates, and workflows
 - Edit and save generated content
 - Track completed opportunities and progress
+
+## Technology
+
+- HTML
+- CSS
+- JavaScript
+- Firebase Authentication
+- Firebase Firestore
+- Existing LLM API
+- GitHub
