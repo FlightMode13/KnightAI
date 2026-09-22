@@ -22,3 +22,16 @@ Our initial focus is on:
 - Professional and financial services
 - Real estate
 - Marketing and creative services
+
+## Main Features
+
+- Create an account and business profile
+- Complete an industry-specific assessment
+- Receive an AI Readiness Score
+- Receive an AI Opportunity Score
+- View recommended AI opportunities
+- Receive a personalized Next Move
+- View a basic 30-day action plan
+- Generate AI prompts, templates, and workflows
+- Edit and save generated content
+- Track completed opportunities and progress
