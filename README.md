@@ -12,3 +12,13 @@ Users complete an assessment about their business and receive personalized AI op
 - **Arijen Garcia** — Backend Developer
 - **Sariah Turner** — Frontend/UI Developer
 - **Kayla Wong** — AI & Research Developer
+
+## Target Users
+
+KnightAI is designed for small and medium-sized businesses with approximately 1–100 employees.
+
+Our initial focus is on:
+
+- Professional and financial services
+- Real estate
+- Marketing and creative services
