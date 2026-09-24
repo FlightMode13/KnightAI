@@ -51,3 +51,5 @@ Our initial focus is on:
 KnightAI aims to make AI easier for small and medium-sized businesses to understand and use in their everyday workflows.
 
 The project focuses on helping businesses identify practical AI opportunities rather than replacing employees or making important business decisions.
+
+## Planned Features: AI Readiness Score and Workbench
