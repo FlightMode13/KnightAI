@@ -1,25 +1,347 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="styles.css">
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101b35">
+  <meta name="description" content="KnightAI helps small and medium-sized businesses discover practical ways to use AI and decide what to do next.">
+  <title>KnightAI — Your Next Move with AI</title>
+  <style>
+    :root {
+      --navy: #101b35;
+      --navy-2: #172747;
+      --blue: #5b8def;
+      --blue-light: #dce8ff;
+      --ink: #17233b;
+      --muted: #65718a;
+      --paper: #f6f8fc;
+      --white: #fff;
+      --line: #e2e8f2;
+      --green: #2c9b79;
+      --shadow: 0 24px 70px rgba(17, 34, 67, .13);
+      --radius: 20px;
+      --ease: cubic-bezier(.2,.7,.2,1);
+    }
+    * { box-sizing: border-box; }
+    html { scroll-behavior: smooth; scroll-padding-top: 84px; }
+    body {
+      margin: 0; color: var(--ink); background: var(--paper);
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+      line-height: 1.6; -webkit-font-smoothing: antialiased;
+    }
+    a { color: inherit; }
+    button, a { -webkit-tap-highlight-color: transparent; }
+    :focus-visible { outline: 3px solid var(--blue); outline-offset: 4px; }
+    .wrap { width: min(1160px, calc(100% - 48px)); margin: 0 auto; }
+    .mono { font: 700 .72rem ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .12em; text-transform: uppercase; }
+    .topbar {
+      position: sticky; top: 0; z-index: 20; background: rgba(246,248,252,.88);
+      backdrop-filter: blur(16px); border-bottom: 1px solid transparent; transition: border-color .25s;
+    }
+    .topbar.scrolled { border-color: var(--line); }
+    .nav { height: 76px; display: flex; align-items: center; gap: 30px; }
+    .brand { display: inline-flex; align-items: center; gap: 11px; text-decoration: none; font-weight: 850; font-size: 1.2rem; letter-spacing: -.04em; }
+    .brand-mark {
+      width: 38px; height: 38px; display: grid; place-items: center; border-radius: 12px;
+      color: white; background: linear-gradient(145deg, #6d9cff, #315db9); box-shadow: 0 7px 18px #4777cc40;
+      font-size: 1.15rem;
+    }
+    .brand small { display: block; color: var(--muted); font-size: .58rem; letter-spacing: .13em; font-weight: 700; margin-top: -4px; }
+    nav { margin-left: auto; display: flex; align-items: center; gap: 28px; }
+    nav a { color: var(--muted); font-size: .92rem; text-decoration: none; font-weight: 600; transition: color .2s; }
+    nav a:hover { color: var(--navy); }
+    .nav-cta, .btn {
+      display: inline-flex; align-items: center; justify-content: center; gap: 10px;
+      border-radius: 11px; padding: 12px 18px; text-decoration: none; font-weight: 750;
+      transition: transform .2s var(--ease), box-shadow .2s, background .2s; cursor: pointer;
+    }
+    .nav-cta, .btn-primary { background: var(--navy); color: white; }
+    .nav-cta:hover, .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 10px 24px #101b3530; }
+    .btn-secondary { border: 1px solid #cbd5e5; color: var(--navy); background: rgba(255,255,255,.65); }
+    .btn-secondary:hover { border-color: var(--blue); transform: translateY(-2px); }
+    .hero { position: relative; overflow: hidden; padding: 86px 0 82px; isolation: isolate; }
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+      background-image: linear-gradient(#1b37600a 1px, transparent 1px), linear-gradient(90deg,#1b37600a 1px,transparent 1px);
+      background-size: 34px 34px; mask-image: radial-gradient(ellipse at 52% 35%, #000 12%, transparent 72%);
+    }
+    .hero::after {
+      content: ""; position: absolute; z-index: -1; width: 560px; height: 560px; border-radius: 50%;
+      background: #dce8ff80; filter: blur(4px); right: -210px; top: -190px;
+    }
+    .hero-grid { display: grid; grid-template-columns: 1.02fr .98fr; gap: 58px; align-items: center; }
+    .eyebrow { color: #5277bb; display: flex; align-items: center; gap: 10px; margin: 0 0 20px; }
+    .eyebrow::before { content: ""; width: 25px; height: 2px; background: var(--blue); }
+    h1,h2,h3,p { margin-top: 0; }
+    h1 { max-width: 680px; color: var(--navy); font-size: clamp(2.8rem, 5.7vw, 5rem); letter-spacing: -.065em; line-height: 1.02; margin-bottom: 23px; }
+    h1 span { color: #4f7ed2; }
+    .lede { color: var(--muted); max-width: 570px; font-size: 1.12rem; line-height: 1.75; margin-bottom: 28px; }
+    .actions { display: flex; flex-wrap: wrap; gap: 12px; }
+    .trustline { display: flex; align-items: center; gap: 9px; margin-top: 24px; color: #7a8599; font-size: .83rem; }
+    .trustline i { width: 7px; height: 7px; border-radius: 50%; background: var(--green); }
+    .preview-shell {
+      position: relative; padding: 13px; border: 1px solid #dce4f1; border-radius: 25px;
+      background: #ffffffb8; box-shadow: var(--shadow); transform: rotate(1deg);
+    }
+    .preview { overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: white; }
+    .preview-top { height: 48px; display: flex; align-items: center; gap: 7px; padding: 0 17px; border-bottom: 1px solid var(--line); }
+    .dot { width: 7px; height: 7px; border-radius: 50%; background: #d5ddeb; }
+    .preview-label { margin-left: auto; color: #8792a7; font: 650 .65rem ui-monospace,monospace; letter-spacing: .08em; }
+    .dash { display: grid; grid-template-columns: 125px 1fr; min-height: 355px; }
+    .sidebar { background: #f8faff; border-right: 1px solid var(--line); padding: 17px 12px; }
+    .side-brand { color: var(--navy); font-weight: 850; font-size: .82rem; margin-bottom: 25px; }
+    .side-link { padding: 8px 9px; border-radius: 7px; color: #8390a6; font-size: .68rem; margin: 4px 0; }
+    .side-link.active { color: #315eae; background: #e9f0ff; font-weight: 750; }
+    .dash-main { padding: 19px; min-width: 0; }
+    .dash-head { display: flex; justify-content: space-between; align-items: center; gap: 8px; margin-bottom: 16px; }
+    .dash-head strong { color: var(--navy); font-size: .91rem; }
+    .tiny-pill { color: #31856c; background: #e7f6f0; border-radius: 20px; padding: 4px 8px; font-size: .58rem; font-weight: 750; }
+    .score-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+    .score-card { border: 1px solid var(--line); border-radius: 10px; padding: 12px; }
+    .score-card span { color: #8994a8; font-size: .62rem; display: block; }
+    .score-card strong { display: block; color: var(--navy); font-size: 1.55rem; letter-spacing: -.05em; margin: 2px 0; }
+    .score-card small { color: #8190a6; font-size: .59rem; }
+    .mini-bar { height: 5px; border-radius: 8px; background: #edf1f7; margin-top: 9px; overflow: hidden; }
+    .mini-bar i { display: block; height: 100%; width: 62%; border-radius: inherit; background: linear-gradient(90deg,#4f7ed2,#8cb0fa); }
+    .mini-bar.green i { width: 43%; background: linear-gradient(90deg,#3a9c7c,#85cdb2); }
+    .dash-section-title { color: var(--navy); font-size: .72rem; font-weight: 800; margin: 17px 0 8px; }
+    .opportunity { display: flex; gap: 9px; align-items: center; padding: 9px; border: 1px solid var(--line); border-radius: 9px; margin-top: 7px; }
+    .opp-icon { width: 28px; height: 28px; display: grid; place-items: center; border-radius: 8px; background: #edf3ff; color: #4975c5; font-size: .8rem; flex: none; }
+    .opportunity b { display: block; color: var(--navy); font-size: .65rem; }
+    .opportunity small { display: block; color: #8792a7; font-size: .56rem; }
+    .float-note {
+      position: absolute; right: -24px; bottom: 28px; background: white; border: 1px solid var(--line);
+      box-shadow: 0 12px 35px #15294b20; padding: 13px 16px; border-radius: 13px; transform: rotate(-2deg);
+      max-width: 190px;
+    }
+    .float-note span { display: block; color: #8792a7; font-size: .6rem; font-weight: 750; letter-spacing: .08em; text-transform: uppercase; }
+    .float-note b { display: block; color: var(--navy); font-size: .78rem; margin-top: 3px; }
+    section.block { padding: 92px 0; }
+    .section-head { max-width: 690px; margin-bottom: 42px; }
+    .section-head .eyebrow { margin-bottom: 14px; }
+    h2 { color: var(--navy); font-size: clamp(2rem,4vw,3.15rem); line-height: 1.1; letter-spacing: -.05em; margin-bottom: 14px; }
+    .section-head p { color: var(--muted); font-size: 1.04rem; max-width: 610px; margin-bottom: 0; }
+    .steps { display: grid; grid-template-columns: repeat(3,1fr); gap: 18px; }
+    .step-card { padding: 25px; border: 1px solid var(--line); border-radius: var(--radius); background: white; transition: transform .25s var(--ease),box-shadow .25s; }
+    .step-card:hover { transform: translateY(-5px); box-shadow: 0 16px 35px #17274712; }
+    .step-no { width: 38px; height: 38px; display: grid; place-items: center; color: #3f70c3; background: #edf3ff; border-radius: 11px; font: 750 .75rem ui-monospace,monospace; }
+    .step-card h3 { color: var(--navy); font-size: 1.2rem; margin: 22px 0 8px; letter-spacing: -.025em; }
+    .step-card p { color: var(--muted); font-size: .94rem; margin: 0; }
+    .dark-section { background: var(--navy); color: white; position: relative; overflow: hidden; }
+    .dark-section::after { content:""; position:absolute; width:440px;height:440px;border:1px solid #ffffff12;border-radius:50%;right:-110px;top:-220px;box-shadow:0 0 0 45px #ffffff08,0 0 0 90px #ffffff05; }
+    .dark-section h2 { color: white; }
+    .dark-section .section-head p { color: #b5c2d9; }
+    .feature-grid { display:grid;grid-template-columns:repeat(3,1fr);gap:14px;position:relative;z-index:1; }
+    .feature { border:1px solid #ffffff20;background:#ffffff09;border-radius:16px;padding:22px; }
+    .feature .symbol { color:#9bbaff;font-size:1.2rem; }
+    .feature h3 { color:white;font-size:1.05rem;margin:13px 0 7px; }
+    .feature p { color:#b5c2d9;font-size:.88rem;margin:0; }
+    .next-move { margin-top: 28px; border:1px solid #ffffff25; border-radius:16px; padding:20px 22px; display:flex; align-items:center; gap:18px; background:#ffffff0b; position:relative;z-index:1; }
+    .next-move .number { color:#9bbaff;font:800 1.8rem ui-monospace,monospace; }
+    .next-move strong { display:block;color:white; }
+    .next-move p { margin:3px 0 0;color:#b5c2d9;font-size:.88rem; }
+    .audience { display:grid;grid-template-columns:1fr 1fr;gap:38px;align-items:center; }
+    .audience-panel { background:white;border:1px solid var(--line);border-radius:var(--radius);padding:27px; }
+    .industry { display:flex;align-items:center;gap:13px;padding:13px 0;border-bottom:1px solid var(--line); }
+    .industry:last-child { border:0; }
+    .industry-icon { width:38px;height:38px;border-radius:11px;background:#edf3ff;color:#4b75bd;display:grid;place-items:center;flex:none; }
+    .industry b { color:var(--navy);font-size:.94rem;display:block; }
+    .industry small { color:var(--muted);font-size:.8rem; }
+    .status-row { display:flex;align-items:center;gap:12px;color:var(--muted);font-size:.88rem;margin-top:22px; }
+    .status-dot { width:9px;height:9px;background:#d69a36;border-radius:50%; }
+    .cta { padding: 75px 0; text-align:center; background:#eaf0fb; }
+    .cta h2 { max-width:700px;margin:0 auto 13px; }
+    .cta p { color:var(--muted);max-width:570px;margin:0 auto 25px; }
+    footer { padding:28px 0;border-top:1px solid var(--line);background:var(--paper); }
+    .footer-inner { display:flex;justify-content:space-between;align-items:center;gap:18px;flex-wrap:wrap;color:#8994a8;font-size:.8rem; }
+    .footer-inner .brand { color:var(--navy);font-size:1rem; }
+    .footer-inner .brand-mark { width:30px;height:30px;border-radius:9px;font-size:.9rem; }
+    .reveal { opacity:0;transform:translateY(18px);transition:opacity .7s var(--ease),transform .7s var(--ease); }
+    .reveal.in { opacity:1;transform:none; }
+    @media (max-width: 900px) {
+      .hero-grid { grid-template-columns:1fr;gap:48px; }
+      .preview-shell { max-width:650px; }
+      .steps,.feature-grid { grid-template-columns:1fr 1fr; }
+      .audience { grid-template-columns:1fr; }
+    }
+    @media (max-width: 620px) {
+      .wrap { width:min(100% - 32px,1160px); }
+      .nav { height:66px; }
+      nav { display:none; }
+      .nav-cta { margin-left:auto;padding:10px 13px;font-size:.85rem; }
+      .hero { padding:60px 0 55px; }
+      h1 { font-size:clamp(2.65rem,13vw,4rem); }
+      .lede { font-size:1rem; }
+      .preview-shell { padding:7px;transform:none; }
+      .dash { grid-template-columns:82px 1fr;min-height:320px; }
+      .sidebar { padding:13px 7px; }
+      .side-link { font-size:.56rem;padding:7px 5px; }
+      .dash-main { padding:12px; }
+      .score-card { padding:9px; }
+      .score-card strong { font-size:1.25rem; }
+      .float-note { right:5px;bottom:-24px; }
+      section.block { padding:68px 0; }
+      .steps,.feature-grid { grid-template-columns:1fr; }
+      .next-move { align-items:flex-start; }
+      .actions .btn { flex:1; }
+    }
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior:auto; }
+      *,*::before,*::after { animation-duration:.01ms!important;transition-duration:.01ms!important; }
+      .reveal { opacity:1;transform:none; }
+    }
+  </style>
 </head>
 <body>
-    <div id="home-div">
-        <img id="title-logo" src="assets/knightailogo.png">
-        <div id="title-div">
-            <h1 id="title">Knight AI</h1>
-            <h2 id="slogan">your next move with AI</h2>
+  <header class="topbar">
+    <div class="wrap nav">
+      <a class="brand" href="#home" aria-label="KnightAI home">
+        <span class="brand-mark">K</span>
+        <span>KnightAI<small>YOUR NEXT MOVE WITH AI</small></span>
+      </a>
+      <nav aria-label="Main navigation">
+        <a href="#how">How it works</a>
+        <a href="#features">What you can do</a>
+        <a href="#who">Who it's for</a>
+      </nav>
+      <a class="nav-cta" href="#get-started">Get started <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+
+  <main id="home">
+    <section class="hero">
+      <div class="wrap hero-grid">
+        <div class="reveal">
+          <p class="eyebrow mono">A clearer path to AI</p>
+          <h1>Find the right AI move for <span>your business.</span></h1>
+          <p class="lede">AI can do a lot. The hard part is knowing where to start. KnightAI helps your business identify practical opportunities, understand its AI readiness, and turn ideas into actionable next steps.</p>
+          <div class="actions">
+            <a class="btn btn-primary" href="#how">Explore how it works <span aria-hidden="true">→</span></a>
+            <a class="btn btn-secondary" href="#features">Explore the platform</a>
+          </div>
+          <div class="trustline"><i></i> Built to make AI strategy easier to understand and act on.</div>
         </div>
+
+        <div class="preview-shell reveal">
+          <div class="preview" aria-label="Illustrative KnightAI dashboard preview">
+            <div class="preview-top"><i class="dot"></i><i class="dot"></i><i class="dot"></i><span class="preview-label">KNIGHTAI / BUSINESS OVERVIEW</span></div>
+            <div class="dash">
+              <aside class="sidebar">
+                <div class="side-brand">KnightAI</div>
+                <div class="side-link active">Overview</div>
+                <div class="side-link">Assessment</div>
+                <div class="side-link">Opportunities</div>
+                <div class="side-link">AI Workbench</div>
+                <div class="side-link">Progress</div>
+              </aside>
+              <div class="dash-main">
+                <div class="dash-head"><strong>Your business overview</strong><span class="tiny-pill">Illustrative preview</span></div>
+                <div class="score-grid">
+                  <div class="score-card"><span>AI READINESS SCORE</span><strong>62<span style="font-size:.8rem;color:#8792a7">/100</span></strong><small>Room to build your foundation</small><div class="mini-bar"><i></i></div></div>
+                  <div class="score-card"><span>AI OPPORTUNITY SCORE</span><strong>78<span style="font-size:.8rem;color:#8792a7">/100</span></strong><small>Several promising use cases</small><div class="mini-bar green"><i></i></div></div>
+                </div>
+                <div class="dash-section-title">Potential opportunities</div>
+                <div class="opportunity"><span class="opp-icon">✦</span><div><b>Streamline customer inquiries</b><small>Customer support · High potential</small></div></div>
+                <div class="opportunity"><span class="opp-icon">↗</span><div><b>Automate routine reporting</b><small>Operations · Explore next</small></div></div>
+                <div class="opportunity"><span class="opp-icon">▤</span><div><b>Organize business documents</b><small>Administration · Explore next</small></div></div>
+              </div>
+            </div>
+          </div>
+          <div class="float-note"><span>Your next move</span><b>Start with one repetitive task.</b></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="block" id="how">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow mono">01 / The process</p>
+          <h2>From “Where do I start?” to a plan you can act on.</h2>
+          <p>Get a clearer picture of your business first. Then use that information to find AI opportunities that make sense for your goals and day-to-day work.</p>
+        </div>
+        <div class="steps">
+          <article class="step-card reveal"><span class="step-no">01</span><h3>Tell us about your business</h3><p>Set up a business profile with details like your industry, team size, and what your business does.</p></article>
+          <article class="step-card reveal"><span class="step-no">02</span><h3>Understand your AI readiness</h3><p>Complete an assessment to explore your current processes, resources, and experience with AI.</p></article>
+          <article class="step-card reveal"><span class="step-no">03</span><h3>Discover your next move</h3><p>Review relevant AI opportunities and get practical recommendations for where to begin.</p></article>
+        </div>
+      </div>
+    </section>
+
+    <section class="block dark-section" id="features">
+      <div class="wrap">
+        <div class="section-head reveal">
+          <p class="eyebrow mono" style="color:#9bbaff">02 / The platform</p>
+          <h2>Less guessing. More purposeful progress.</h2>
+          <p>KnightAI is being designed to help businesses move from understanding AI to exploring how it could fit into their actual work.</p>
+        </div>
+        <div class="feature-grid">
+          <article class="feature reveal"><span class="symbol">◈</span><h3>Readiness insights</h3><p>Understand your starting point through an AI readiness assessment and score.</p></article>
+          <article class="feature reveal"><span class="symbol">✦</span><h3>Relevant opportunities</h3><p>Explore potential AI use cases connected to your industry and business needs.</p></article>
+          <article class="feature reveal"><span class="symbol">↗</span><h3>Your next move</h3><p>Get a suggested starting point and a practical action plan to help move forward.</p></article>
+          <article class="feature reveal"><span class="symbol">⌘</span><h3>AI Workbench</h3><p>Turn a selected opportunity into a useful prompt, template, workflow, or procedure.</p></article>
+          <article class="feature reveal"><span class="symbol">✓</span><h3>Track your progress</h3><p>Keep track of opportunities you have explored and completed.</p></article>
+          <article class="feature reveal"><span class="symbol">↻</span><h3>Revisit your assessment</h3><p>Retake the assessment and see how your business's results change over time.</p></article>
+        </div>
+        <div class="next-move reveal"><span class="number">→</span><div><strong>Start with what matters to your business.</strong><p>The goal isn't to use AI everywhere. It's to find places where it can be genuinely useful.</p></div></div>
+      </div>
+    </section>
+
+    <section class="block" id="who">
+      <div class="wrap audience">
+        <div class="reveal">
+          <p class="eyebrow mono">03 / Made for business</p>
+          <h2>AI guidance that starts with your industry.</h2>
+          <p style="color:var(--muted);font-size:1.02rem">Different businesses have different workflows, challenges, and opportunities. KnightAI is being developed with a focus on small and medium-sized businesses, starting with industries where practical AI applications can make a difference.</p>
+          <div class="status-row"><i class="status-dot"></i><span>Initial industry focus for the project</span></div>
+        </div>
+        <div class="audience-panel reveal">
+          <div class="industry"><span class="industry-icon">▥</span><div><b>Professional & financial services</b><small>Research, documentation, reporting, and client workflows</small></div></div>
+          <div class="industry"><span class="industry-icon">⌂</span><div><b>Real estate</b><small>Listings, client communication, and administrative tasks</small></div></div>
+          <div class="industry"><span class="industry-icon">✎</span><div><b>Marketing & creative services</b><small>Content workflows, campaign planning, and creative operations</small></div></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta" id="get-started">
+      <div class="wrap reveal">
+        <p class="eyebrow mono" style="justify-content:center">Your next move starts here</p>
+        <h2>Make your next move with AI a more informed one.</h2>
+        <p>KnightAI is currently in development. We're working toward making AI opportunities easier for businesses to understand, evaluate, and put into action.</p>
+        <a class="btn btn-primary" href="#home">Back to top ↑</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap footer-inner">
+      <a class="brand" href="#home"><span class="brand-mark">K</span><span>KnightAI<small>YOUR NEXT MOVE WITH AI</small></span></a>
+      <span>© <span id="year"></span> KnightAI. All rights reserved.</span>
+      <span>Built to help businesses take their next move.</span>
     </div>
-    <div id="getstarted-div">
-        <button>Get Started</button>
-    </div>
-    
+  </footer>
+
+  <script>
+    document.getElementById("year").textContent = new Date().getFullYear();
+    const header = document.querySelector(".topbar");
+    const updateHeader = () => header.classList.toggle("scrolled", window.scrollY > 8);
+    window.addEventListener("scroll", updateHeader, { passive: true });
+    updateHeader();
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    const revealItems = document.querySelectorAll(".reveal");
+    if ("IntersectionObserver" in window && !reduceMotion) {
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add("in");
+            observer.unobserve(entry.target);
+          }
+        });
+      }, { threshold: 0.12 });
+      revealItems.forEach((item) => observer.observe(item));
+    } else {
+      revealItems.forEach((item) => item.classList.add("in"));
+    }
+  </script>
 </body>
 </html>
