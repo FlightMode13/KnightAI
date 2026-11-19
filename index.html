@@ -1,533 +1,73 @@
-
 <!DOCTYPE html>
 <html lang="en" data-theme="dark">
 <head>
   <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#081a37">
-  <meta name="description" content="KnightAI helps businesses find practical ways to use AI.">
-
-  <title>KnightAI - Your Next Move with AI</title>
-
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#09162b">
+  <meta name="description" content="KnightAI helps small businesses assess AI readiness and discover practical opportunities.">
+  <title>KnightAI | Find your next move with AI</title>
   <link rel="stylesheet" href="styles.css">
+  <script src="script.js" defer></script>
 </head>
-
 <body>
-
-<main class="app">
-
-  <div class="dots"></div>
-
-  <header class="topbar">
-    <div class="mini-brand" id="miniBrand">
-      <span class="mini-logo">K</span>
-      <span>Knight<span class="blue">AI</span></span>
-    </div>
-
-    <div class="tools">
-      <div class="progress-dots" id="progressDots"></div>
-
-      <button class="theme-button" id="themeButton">
-        <span id="themeIcon">☀</span>
-        <span id="themeLabel">Light mode</span>
-      </button>
+  <a class="skip-link" href="#mainContent">Skip to content</a>
+  <header class="site-header">
+    <a class="brand" href="#home" aria-label="KnightAI home"><span class="brand-mark" aria-hidden="true">K</span> Knight<span class="brand-highlight">AI</span></a>
+    <nav class="site-navigation" aria-label="Main navigation">
+      <a href="#home" data-navigation="home">Home</a>
+      <a href="#how-it-works" data-navigation="how-it-works">How it works</a>
+      <a href="#dashboard" data-navigation="dashboard" class="member-only" hidden>Dashboard</a>
+    </nav>
+    <div class="header-actions">
+      <button class="theme-toggle button button-quiet" id="themeToggle" type="button" aria-label="Switch to light mode">☀ <span>Light</span></button>
+      <button class="button button-outline account-control" id="accountButton" type="button" data-view="signin"><span class="account-avatar" id="headerAvatar" hidden></span><span id="headerAccountLabel">Sign in</span></button>
+      <button class="button button-primary header-start" type="button" data-view="signup">Get started</button>
     </div>
   </header>
 
-
-  <!-- HOME -->
-
-  <section class="screen landing active" data-screen="landing">
-
-    <div class="landing-content">
-
-      <div class="logo-section">
-        <img
-          src="assets/knightailogo.png"
-          alt="KnightAI logo"
-          class="logo"
-        >
-
-        <div>
-          <div class="brand-name">Knight<span class="blue">AI</span></div>
-          <p class="tagline">Your next move with AI</p>
+  <main id="mainContent">
+    <section class="view home-view active" id="homeView" data-view-name="home">
+      <section class="hero section-wrap" aria-labelledby="heroHeading">
+        <div class="hero-copy">
+          <p class="eyebrow"><span class="status-spark"></span> SIMPLE AI GUIDANCE FOR SMALL BUSINESSES</p>
+          <h1 id="heroHeading">Not sure where to start with AI? <span>We'll help.</span></h1>
+          <p class="hero-description">Answer a few questions. Find out where AI might save your team time. Get a simple plan to try it.</p>
+          <div class="hero-actions"><button class="button button-primary button-large home-start-button" type="button" data-view="signup">Start free assessment</button><a class="button button-outline button-large" href="#how-it-works">How it works</a></div>
+          <p class="microcopy">No AI experience needed · Free demo</p>
         </div>
-      </div>
-
-      <button class="primary" data-go="account">
-        Get Started
-      </button>
-
-    </div>
-
-  </section>
-
-
-  <!-- STEP 1: ACCOUNT -->
-
-  <section class="screen" data-screen="account">
-
-    <form class="panel light-panel">
-
-      <p class="eyebrow">Step 1 of 7</p>
-
-      <h1>Create Your Account</h1>
-
-      <p class="lead">
-        Let's get you set up. This is a prototype account screen.
-      </p>
-
-      <div class="fields">
-
-        <div class="field">
-          <label for="email">Email</label>
-          <input
-            type="email"
-            id="email"
-            placeholder="you@business.com"
-          >
+        <div class="hero-visual" aria-label="Illustrative AI readiness dashboard preview">
+          <div class="preview-label"><span class="preview-symbol">✦</span> YOUR BUSINESS SNAPSHOT <span class="sample-badge">EXAMPLE</span></div>
+          <div class="preview-main"><div class="preview-gauge" style="--gauge-progress:78"><strong>78</strong><span>Readiness / 100</span></div><div><p class="preview-overline">EXAMPLE RESULT</p><h2>See where your business stands.</h2><p>Get a score and a suggested next step.</p></div></div>
+          <p class="preview-caption">Sample score for illustration only.</p>
         </div>
+      </section>
 
-        <div class="field">
-          <label for="password">Password</label>
-          <input
-            type="password"
-            id="password"
-            placeholder="Enter a password"
-          >
-        </div>
+      <section class="section-wrap informational-section" id="how-it-works"><div class="section-heading"><p class="eyebrow">HOW IT WORKS</p><h2>Three easy steps</h2></div><div class="feature-grid"><article class="feature-card"><span class="feature-number">STEP 1</span><div class="feature-icon">◎</div><h3>Answer questions</h3><p>Tell us a little about your business.</p></article><article class="feature-card"><span class="feature-number">STEP 2</span><div class="feature-icon">◈</div><h3>Get your results</h3><p>See where AI could help.</p></article><article class="feature-card"><span class="feature-number">STEP 3</span><div class="feature-icon">↗</div><h3>Try a simple plan</h3><p>Take one manageable next step.</p></article></div></section>
+      <footer class="site-footer section-wrap"><span>Knight<span class="brand-highlight">AI</span> · Your next move with AI</span><span>Educational prototype · Not a live AI service</span></footer>
+    </section>
 
-      </div>
+    <section class="view app-view" id="authView" data-view-name="auth" aria-labelledby="authHeading">
+      <div class="auth-layout"><div class="auth-aside"><p class="eyebrow">WELCOME TO KNIGHTAI</p><h2>A better starting point for your business.</h2><p>One guided assessment. Practical recommendations. A place to keep your progress.</p><div class="auth-aside-art" aria-hidden="true">✦</div></div><div class="surface-card auth-card"><p class="eyebrow" id="authEyebrow">CREATE YOUR ACCOUNT</p><h1 id="authHeading">Let's get started.</h1><p class="muted" id="authDescription">Create a local demo account to save your assessment in this browser.</p><form id="authForm" novalidate><div class="form-field"><label for="accountEmail">Email address</label><input id="accountEmail" type="email" autocomplete="email" placeholder="you@business.com" required></div><div class="form-field"><label for="accountPassword">Password</label><input id="accountPassword" type="password" autocomplete="current-password" minlength="8" required></div><p class="form-message" id="authMessage" role="alert" hidden></p><button class="button button-primary full-width" id="authSubmit" type="submit">Create demo account</button></form><div class="auth-switch"><span id="authSwitchDescription">Already have an account?</span> <button class="text-button" type="button" id="authSwitchButton">Sign in</button></div><div class="demo-credentials"><strong>Try the demo account</strong><p>Email: <code>demo@knightai.example</code><br>Password: <code>KnightDemo2026!</code></p><button class="button button-outline" type="button" id="fillDemoCredentials">Use demo credentials</button><small>Demo accounts are browser-local only. Never enter a real password.</small></div></div></div>
+    </section>
 
-      <div class="actions">
-        <button type="button" class="secondary" data-go="landing">
-          Back
-        </button>
+    <section class="view app-view" id="profileView" data-view-name="profile"><div class="app-container narrow"><div class="page-intro"><p class="eyebrow">GETTING STARTED</p><h1>Tell us about your business.</h1><p>We'll use this information to personalize your assessment.</p></div><form class="surface-card form-card" id="profileForm"><div class="form-grid"><div class="form-field"><label for="businessName">Business name</label><input id="businessName" type="text" maxlength="90" required placeholder="Your business name"></div><div class="form-field"><label for="industry">Industry</label><select id="industry" required><option value="">Select an industry</option><option value="professional">Professional &amp; Financial Services</option><option value="realestate">Real Estate</option><option value="marketing">Marketing &amp; Creative Services</option></select></div><div class="form-field"><label for="employeeCount">Number of employees</label><select id="employeeCount" required><option value="">Select team size</option><option value="1-5">1–5</option><option value="6-20">6–20</option><option value="21-50">21–50</option><option value="51-100">51–100</option></select></div><div class="form-field"><label for="businessDescription">What does your business do? <span class="optional-label">Optional</span></label><input id="businessDescription" type="text" maxlength="250" placeholder="A brief description"></div></div><div class="form-actions"><button type="button" class="button button-outline" data-view="home">Back home</button><button type="submit" class="button button-primary">Continue to assessment</button></div></form></div></section>
 
-        <button type="button" class="primary" data-go="business">
-          Create Account
-        </button>
-      </div>
+    <section class="view app-view" id="assessmentView" data-view-name="assessment"><div class="app-container narrow"><div class="assessment-heading"><div><p class="eyebrow" id="assessmentCategory">AI READINESS ASSESSMENT</p><h1 id="assessmentHeading">Let's understand your business.</h1><p id="assessmentHelp" class="muted">Choose the answer that fits best.</p></div><div class="step-count" id="stepCount" aria-live="polite"></div></div><div class="assessment-progress" role="progressbar" id="assessmentProgress" aria-label="Assessment progress" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="assessmentProgressFill"></span></div><form class="surface-card question-card" id="assessmentForm"><div id="questionContent"></div><p class="form-message" id="assessmentMessage" role="alert" hidden></p><div class="form-actions"><button type="button" class="button button-outline" id="previousQuestion">Back</button><button type="submit" class="button button-primary" id="nextQuestion">Continue</button></div></form><p class="help-note">Your answers are saved in this browser as you go. You can change them anytime.</p></div></section>
 
-    </form>
+    <section class="view app-view" id="resultsView" data-view-name="results"><div class="app-container"><div class="page-intro"><p class="eyebrow">YOUR ASSESSMENT RESULTS</p><h1>Your business, a clearer next move.</h1><p id="resultsSubtitle">Here's what your answers tell us.</p></div><div class="score-grid"><article class="surface-card score-card"><div class="score-ring" id="readinessRing"><div><strong id="readinessScore">—</strong><small>/ 100</small></div></div><div><p class="eyebrow">AI READINESS</p><h2 id="readinessStatus">Your starting point</h2><p id="readinessExplanation"></p></div></article><article class="surface-card score-card"><div class="score-ring opportunity-ring" id="opportunityRing"><div><strong id="opportunityScore">—</strong><small>/ 100</small></div></div><div><p class="eyebrow">AI OPPORTUNITY</p><h2 id="opportunityStatus">Where AI may help</h2><p id="opportunityExplanation"></p></div></article></div><div class="results-grid"><article class="surface-card"><p class="eyebrow">WHY THESE SCORES?</p><h2>Your readiness factors</h2><div id="readinessFactors" class="factor-list"></div></article><article class="surface-card"><p class="eyebrow">YOUR TOP OPPORTUNITIES</p><h2>Areas worth exploring</h2><div id="opportunityList" class="recommendation-list"></div></article></div><div class="surface-card result-summary"><div><p class="eyebrow">OUR RECOMMENDATION</p><h2 id="resultRecommendation"></h2><p id="resultReason"></p><p class="help-note">Scores are an illustrative, rules-based estimate—not a validated business diagnostic or promised time savings. No external AI model is connected.</p></div><button class="button button-primary" type="button" data-view="plan">See your next move</button></div><div class="form-actions"><button class="button button-outline" type="button" id="editAnswersButton">Review answers</button><button class="button button-outline" type="button" data-view="dashboard">Go to dashboard</button></div></div></section>
 
-  </section>
+    <section class="view app-view" id="planView" data-view-name="plan"><div class="app-container narrow"><div class="page-intro"><p class="eyebrow">YOUR NEXT MOVE</p><h1 id="planHeading">A practical first step.</h1><p id="planIntroduction"></p></div><div class="surface-card"><p class="eyebrow">YOUR 30-DAY STARTER PLAN</p><h2>Start small. Learn what works.</h2><div class="timeline" id="planTimeline"></div><div class="form-actions"><button type="button" class="button button-outline" data-view="results">Back to results</button><button type="button" class="button button-primary" data-view="workbench">Open AI workbench</button></div></div></div></section>
 
+    <section class="view app-view" id="workbenchView" data-view-name="workbench"><div class="app-container"><div class="page-intro"><p class="eyebrow">AI WORKBENCH</p><h1>Make the first draft yours.</h1><p>Customize a starter prompt for the workflow you identified. Copy it into an AI tool of your choice when you're ready.</p></div><div class="workbench-grid"><div class="surface-card"><p class="eyebrow">SUGGESTED WORKFLOW</p><h2 id="workbenchTitle"></h2><p id="workbenchContext"></p><div class="tip-box"><strong>A useful prompt includes:</strong><ul><li>The task and intended audience</li><li>Necessary background and inputs</li><li>The format and tone you want</li><li>A reminder to review the output</li></ul></div></div><div class="surface-card"><label class="editor-label" for="promptEditor">Your editable prompt</label><textarea id="promptEditor" class="prompt-editor" rows="13" spellcheck="true"></textarea><p class="help-note">Do not paste confidential client information into unapproved public AI tools.</p><div class="form-actions"><button type="button" class="button button-outline" id="copyPromptButton">Copy prompt</button><button type="button" class="button button-primary" id="savePromptButton">Save to dashboard</button></div><p class="form-message success-message" id="workbenchMessage" role="status" hidden></p></div></div></div></section>
 
-  <!-- STEP 2: BUSINESS INFORMATION -->
+    <section class="view app-view" id="dashboardView" data-view-name="dashboard"><div class="app-container"><div class="dashboard-top"><div class="page-intro"><p class="eyebrow">YOUR KNIGHTAI DASHBOARD</p><h1 id="dashboardGreeting">Welcome back.</h1><p id="dashboardSubtitle">Your progress, all in one place.</p></div><button class="button button-outline" type="button" data-view="settings">Account settings</button></div><div class="dashboard-progress-grid"><div class="surface-card"><div class="progress-label"><strong>AI readiness</strong><span id="dashboardReadinessValue">Not assessed</span></div><div class="metric-progress" role="progressbar" aria-label="AI readiness" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="dashboardReadinessProgress"><span id="dashboardReadinessFill"></span></div><p class="help-note">How prepared your business is to use AI.</p></div><div class="surface-card"><div class="progress-label"><strong>Implementation tasks</strong><span id="dashboardTaskValue">0 of 4 complete</span></div><div class="metric-progress" role="progressbar" aria-label="Implementation tasks completed" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0" id="dashboardTaskProgress"><span id="dashboardTaskFill"></span></div><p class="help-note">Your progress through the starter checklist.</p></div></div><div class="dashboard-grid"><article class="surface-card dashboard-feature"><p class="eyebrow">ASSESSMENT</p><h2 id="dashboardAssessmentTitle">Ready when you are</h2><p id="dashboardAssessmentDescription">Complete your assessment to unlock your personalized plan.</p><button class="button button-primary" type="button" id="dashboardAssessmentButton">Start assessment</button></article><article class="surface-card"><p class="eyebrow">NEXT MOVE</p><h2 id="dashboardNextMove">Discover your next opportunity</h2><p id="dashboardNextMoveDescription">Your recommendation will appear here.</p><button class="button button-outline" type="button" id="dashboardPlanButton">View plan</button></article><article class="surface-card"><p class="eyebrow">YOUR 30-DAY CHECKLIST</p><h2>Make progress in small steps</h2><div id="dashboardChecklist" class="checklist"></div></article><article class="surface-card"><p class="eyebrow">SAVED WORK</p><h2>Your AI workbench</h2><p id="dashboardPromptStatus">No prompt saved yet.</p><button type="button" class="button button-outline" data-view="workbench">Open workbench</button></article></div></div></section>
 
-  <section class="screen" data-screen="business">
-
-    <form class="panel">
-
-      <p class="eyebrow">Step 2 of 7</p>
-
-      <h1>Tell Us About Your Business</h1>
-
-      <p class="lead">
-        A little background helps us find the right AI opportunities for you.
-      </p>
-
-      <div class="two-col">
-
-        <div class="field">
-          <label for="businessName">Business Name</label>
-          <input type="text" id="businessName">
-        </div>
-
-        <div class="field">
-          <label for="employees">Number of Employees</label>
-          <input type="number" id="employees">
-        </div>
-
-        <div class="field">
-          <label for="industry">Industry</label>
-          <select id="industry">
-            <option value="">Select one</option>
-            <option>Professional services</option>
-            <option>Real estate</option>
-            <option>Marketing</option>
-            <option>Other</option>
-          </select>
-        </div>
-
-        <div class="field">
-          <label for="description">What does your business do?</label>
-          <input type="text" id="description">
-        </div>
-
-      </div>
-
-      <div class="actions">
-        <button type="button" class="secondary" data-go="account">
-          Back
-        </button>
-
-        <button type="button" class="primary" data-go="assessment">
-          Continue
-        </button>
-      </div>
-
-    </form>
-
-  </section>
-
-
-  <!-- STEP 3: ASSESSMENT -->
-
-  <section class="screen" data-screen="assessment">
-
-    <form class="panel">
-
-      <p class="eyebrow">Step 3 of 7</p>
-
-      <h1>Let's Look at Your Workflow</h1>
-
-      <div class="assessment-top">
-        <strong>30%</strong>
-        <div class="progress-bar">
-          <div></div>
-        </div>
-      </div>
-
-      <div class="field">
-        <label for="answer">
-          How often does your team write repetitive emails?
-        </label>
-
-        <textarea
-          id="answer"
-          placeholder="Tell us a little about your current workflow..."
-        ></textarea>
-      </div>
-
-      <div class="actions">
-        <button type="button" class="secondary" data-go="business">
-          Back
-        </button>
-
-        <button type="button" class="primary" data-go="results">
-          Continue
-        </button>
-      </div>
-
-      <p class="note">
-        Prototype question. Responses are not saved yet.
-      </p>
-
-    </form>
-
-  </section>
-
-
-  <!-- STEP 4: RESULTS -->
-
-  <section class="screen" data-screen="results">
-
-    <div class="panel wide">
-
-      <p class="eyebrow">Step 4 of 7 · Your Results</p>
-
-      <div class="result-grid">
-
-        <div class="readiness-circle">
-          <div>
-            <strong>30%</strong>
-            <span>AI Readiness</span>
-          </div>
-        </div>
-
-        <div>
-          <h1>Your Top AI Opportunities</h1>
-
-          <div class="opportunity">
-            <span class="small-circle"></span>
-            Email Drafting
-          </div>
-
-          <div class="opportunity">
-            <span class="small-circle"></span>
-            Document Organization
-          </div>
-
-          <div class="opportunity">
-            <span class="small-circle"></span>
-            Marketing Content
-          </div>
-
-        </div>
-
-      </div>
-
-      <div class="actions">
-        <button class="secondary" data-go="assessment">
-          Back
-        </button>
-
-        <button class="primary" data-go="nextmove">
-          See Your Next Move
-        </button>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- STEP 5: RECOMMENDATION -->
-
-  <section class="screen" data-screen="nextmove">
-
-    <div class="panel">
-
-      <p class="eyebrow">Step 5 of 7 · Recommendation</p>
-
-      <h1>Your Next Move</h1>
-
-      <p class="lead">
-        <strong>Start with AI-assisted email drafting.</strong>
-      </p>
-
-      <h3>Why start here?</h3>
-
-      <p class="next-copy">
-        Your business spends time creating repetitive emails.
-        This makes email drafting a simple and practical place to start
-        using AI.
-      </p>
-
-      <div class="actions">
-        <button class="secondary" data-go="results">
-          Back
-        </button>
-
-        <button class="primary" data-go="workbench">
-          View 30-Day Plan
-        </button>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- STEP 6: WORKBENCH -->
-
-  <section class="screen" data-screen="workbench">
-
-    <div class="panel wide">
-
-      <p class="eyebrow">Step 6 of 7 · Build</p>
-
-      <h1>AI Workbench</h1>
-
-      <div class="workbench-grid">
-
-        <div>
-          <span class="pill">Email Drafting</span>
-
-          <p class="prompt">
-            <strong>Prompt:</strong>
-            You are an AI assistant helping a marketing agency
-            draft professional client follow-up emails.
-          </p>
-        </div>
-
-        <div
-          class="editor"
-          contenteditable="true"
-          role="textbox"
-          aria-label="Editable email draft"
-        >
-          Sample email here...
-        </div>
-
-      </div>
-
-      <div class="actions">
-        <button class="secondary" data-go="nextmove">
-          Back
-        </button>
-
-        <button class="primary" data-go="dashboard">
-          Save & Continue
-        </button>
-      </div>
-
-    </div>
-
-  </section>
-
-
-  <!-- STEP 7: DASHBOARD -->
-
-  <section class="screen" data-screen="dashboard">
-
-    <div class="panel wide">
-
-      <p class="eyebrow">Step 7 of 7</p>
-
-      <h1>Your Dashboard</h1>
-
-      <p class="lead">
-        Keep track of your progress and see what you can work on next.
-      </p>
-
-      <div class="dashboard-grid">
-
-        <div class="dash-card">
-          <h2>Your Progress</h2>
-
-          <ul>
-            <li class="complete">✓ Email Drafting</li>
-            <li>Document Organization</li>
-            <li>Marketing Research</li>
-          </ul>
-        </div>
-
-        <div class="dash-card">
-          <h2>What's Next?</h2>
-
-          <p>
-            Turn your email workflow into a repeatable
-            30-day practice.
-          </p>
-        </div>
-
-      </div>
-
-      <div class="actions">
-        <button class="secondary" data-go="workbench">
-          Back
-        </button>
-
-        <button class="primary" data-go="landing">
-          Return Home
-        </button>
-      </div>
-
-    </div>
-
-  </section>
-
-</main>
-
-
-<script>
-const screens = [
-  "landing",
-  "account",
-  "business",
-  "assessment",
-  "results",
-  "nextmove",
-  "workbench",
-  "dashboard"
-];
-
-const root = document.documentElement;
-const themeButton = document.getElementById("themeButton");
-const themeLabel = document.getElementById("themeLabel");
-const themeIcon = document.getElementById("themeIcon");
-const miniBrand = document.getElementById("miniBrand");
-const progressDots = document.getElementById("progressDots");
-
-// Create progress dots
-for (let i = 0; i < screens.length - 1; i++) {
-  progressDots.appendChild(document.createElement("i"));
-}
-
-// Switch between dark and light themes
-function setTheme(theme) {
-  root.dataset.theme = theme;
-
-  const dark = theme === "dark";
-
-  themeLabel.textContent = dark ? "Light mode" : "Dark mode";
-  themeIcon.textContent = dark ? "☀" : "☾";
-
-  document.querySelector('meta[name="theme-color"]').content =
-    dark ? "#081a37" : "#eef3fb";
-
-  localStorage.setItem("knight-theme", theme);
-}
-
-// Show the selected screen
-function showScreen(name, updateHistory = true) {
-  if (!screens.includes(name)) {
-    name = "landing";
-  }
-
-  document.querySelectorAll(".screen").forEach(screen => {
-    screen.classList.toggle(
-      "active",
-      screen.dataset.screen === name
-    );
-  });
-
-  const index = screens.indexOf(name);
-
-  miniBrand.classList.toggle("show", index > 0);
-  progressDots.classList.toggle("show", index > 0);
-
-  [...progressDots.children].forEach((dot, i) => {
-    dot.classList.toggle("on", i === index - 1);
-  });
-
-  if (updateHistory) {
-    history.pushState(
-      { screen: name },
-      "",
-      name === "landing" ? "#home" : "#" + name
-    );
-  }
-
-  const heading = document.querySelector(
-    `[data-screen="${name}"] h1`
-  );
-
-  document.title = name === "landing"
-    ? "KnightAI - Your Next Move with AI"
-    : `${heading?.textContent.trim() || "KnightAI"} - KnightAI`;
-}
-
-// Theme button
-themeButton.addEventListener("click", () => {
-  const nextTheme = root.dataset.theme === "dark"
-    ? "light"
-    : "dark";
-
-  setTheme(nextTheme);
-});
-
-// Navigation buttons
-document.addEventListener("click", event => {
-  const button = event.target.closest("[data-go]");
-
-  if (button) {
-    showScreen(button.dataset.go);
-  }
-});
-
-// Browser back and forward buttons
-window.addEventListener("popstate", () => {
-  const name = location.hash.replace("#", "");
-  showScreen(name === "home" ? "landing" : name, false);
-});
-
-// Load saved theme
-setTheme(localStorage.getItem("knight-theme") || "dark");
-
-// Load screen from URL
-const startScreen = location.hash.replace("#", "");
-
-if (startScreen) {
-  showScreen(
-    startScreen === "home" ? "landing" : startScreen,
-    false
-  );
-}
-</script>
-
+    <section class="view app-view" id="settingsView" data-view-name="settings"><div class="app-container narrow"><div class="page-intro"><p class="eyebrow">MY ACCOUNT</p><h1>Account settings</h1><p>Edit your information, change your picture, or manage your assessment.</p></div>
+      <form class="surface-card settings-form" id="settingsForm"><h2>Your account</h2><div class="profile-photo-row"><span class="account-avatar settings-avatar" id="settingsAvatar" aria-hidden="true"></span><div><label for="profilePhoto" class="button button-outline">Choose profile picture</label><input id="profilePhoto" type="file" accept="image/png,image/jpeg,image/webp" hidden><button class="text-button" id="removeProfilePhoto" type="button">Remove picture</button><p class="help-note">JPG, PNG or WebP, up to 1 MB. Saved only in this browser.</p></div></div><div class="form-field"><label for="settingsEmail">Email address</label><input type="email" id="settingsEmail" required autocomplete="email"></div><div class="form-field"><label for="settingsBusinessName">Business name</label><input type="text" id="settingsBusinessName" maxlength="90" required></div><div class="form-grid"><div class="form-field"><label for="settingsIndustry">Industry</label><select id="settingsIndustry" required><option value="professional">Professional &amp; Financial Services</option><option value="realestate">Real Estate</option><option value="marketing">Marketing &amp; Creative Services</option></select></div><div class="form-field"><label for="settingsEmployees">Employees</label><select id="settingsEmployees" required><option value="1-5">1–5</option><option value="6-20">6–20</option><option value="21-50">21–50</option><option value="51-100">51–100</option></select></div></div><div class="form-field"><label for="settingsDescription">Business description <span class="optional-label">Optional</span></label><textarea id="settingsDescription" maxlength="250" rows="3"></textarea></div><div class="form-field"><label for="settingsPassword">New password <span class="optional-label">Optional</span></label><input type="password" id="settingsPassword" minlength="8" autocomplete="new-password" placeholder="Leave blank to keep your password"></div><p class="help-note">Changing your industry clears the five industry-specific assessment answers. You'll need to answer them again for updated results.</p><p class="form-message" id="settingsMessage" role="alert" hidden></p><div class="form-actions"><button class="button button-outline" type="button" data-view="dashboard">Back to dashboard</button><button class="button button-primary" type="submit">Save changes</button></div></form>
+      <div class="surface-card account-actions"><h2>Assessment</h2><p>Want a fresh start? You can take the assessment again without losing your account details.</p><button type="button" class="button button-outline" id="restartAssessmentButton">Restart assessment</button></div>
+      <div class="surface-card danger-zone"><p class="eyebrow">DANGER ZONE</p><h2>Delete your account</h2><p>Delete this demo account, including its profile, assessment answers, saved prompts, and checklist. This cannot be undone.</p><button type="button" class="button button-danger" id="deleteAccountButton">Delete account</button></div><button class="button button-outline sign-out-settings" id="signOutButton" type="button">Sign out</button>
+    </div></section>
+  </main>
+  <div id="announcement" class="announcement" role="status" aria-live="polite" hidden></div>
 </body>
 </html>
