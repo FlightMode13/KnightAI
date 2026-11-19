@@ -12,6 +12,9 @@ Users complete an assessment about their business and receive personalized AI op
 - **Arijen Garcia** — Backend Developer
 - **Sariah Turner** — Frontend/UI Developer
 - **Kayla Wong** — AI & Research Developer
+- **Joseph Cha** — QA & Testing Intern
+- **Paulo Mazarakis** — Business Research Intern
+- **Victory Unegbu** — Technical Development Intern
 
 ## Target Users
 
